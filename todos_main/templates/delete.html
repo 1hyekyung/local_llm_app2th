@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>🗑 Todo 삭제</h2>
+
+<div class="task">
+
+    <p>
+        아래 Todo를 삭제하시겠습니까?
+    </p>
+
+    <textarea rows="5" readonly>{{ todo.task }}</textarea>
+
+    <br><br>
+
+    <form action="/delete/{{ todo.id }}" method="post">
+
+        <button type="submit">
+            삭제
+        </button>
+
+        <a href="/">취소</a>
+
+    </form>
+
+</div>
+
+<hr>
+
+<!-- Todo 목록 -->
+
+<div>
+
+    <h2>Task List</h2>
+
+    {% for item in todos %}
+
+    <div class="task">
+
+        {% if item.completed %}
+            <strike>{{ item.task }}</strike>
+        {% else %}
+            {{ item.task }}
+        {% endif %}
+
+        <small>
+
+            <a href="/edit/{{ item.id }}">
+                Edit
+            </a>
+
+            <a href="/delete/{{ item.id }}">
+                Delete
+            </a>
+
+        </small>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
