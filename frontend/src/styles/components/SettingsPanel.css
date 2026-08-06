@@ -1,0 +1,57 @@
+.settings-panel {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+}
+
+.settings-panel h3 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.settings-field span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.settings-field textarea,
+.settings-field input {
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.settings-field textarea:focus,
+.settings-field input:focus {
+  outline: 2px solid #c7d2fe;
+  border-color: #818cf8;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.settings-field.compact input {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
