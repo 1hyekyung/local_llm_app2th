@@ -6,6 +6,7 @@ from ollama_chat import call_ollama_chat, get_ollama_models
 from schema import ChatRequest, ChatResponse
 import uvicorn
 
+
 # ctrl + . : 모듈 자동 import 단축키
 
 # FastAPI 객체 생성
@@ -15,6 +16,15 @@ app = FastAPI(
     version="0.1.0",
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware( 
+    CORSMiddleware, 
+    allow_origins=["*"], 
+    allow_credentials=True, 
+    allow_methods=["*"], 
+    allow_headers=["*"], 
+)
 
 
 # /chat API 구현
@@ -63,4 +73,4 @@ def list_models():
 
 if __name__ == "__main__":
   uvicorn.run('main:app', 
-              host='127.0.0.1', port=8001, reload=True)
+              host='127.0.0.1', port=8000, reload=True)
