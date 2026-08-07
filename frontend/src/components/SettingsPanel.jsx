@@ -1,4 +1,5 @@
 import '../styles/components/SettingsPanel.css'
+import { promptModes } from '../api/promptModes'
 
 function SettingsPanel({
   systemPrompt,
@@ -10,11 +11,26 @@ function SettingsPanel({
   onTopPChange,
   onNumPredictChange,
 }) {
+  const handlePromptModeChange = (event) => {
+    const selectedMode = event.target.value
+    if (selectedMode && promptModes[selectedMode]) {
+      onSystemPromptChange(promptModes[selectedMode].prompt)
+    }
+  }
+
   return (
     <section className="settings-panel">
       <h3>설정</h3>
       <label className="settings-field">
         <span>시스템 프롬프트</span>
+        <select onChange={handlePromptModeChange} defaultValue="">
+          <option value="">프롬프트 템플릿 선택</option>
+          {Object.entries(promptModes).map(([key, mode]) => (
+            <option key={key} value={key}>
+              {mode.label}
+            </option>
+          ))}
+        </select>
         <textarea
           value={systemPrompt}
           onChange={(event) => onSystemPromptChange(event.target.value)}
